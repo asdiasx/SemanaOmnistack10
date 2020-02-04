@@ -1,9 +1,9 @@
-var string = ['teste', 'de', 'mapeamento', 'array'].map(function (variavel, indice, array) {
-  console.log(array);
-  console.log(indice);
+express = require('express');
+var nome = "Adriano";
+var sobrenome = "Dias";
+var idade = 51;
 
-  return variavel.toUpperCase()
-});
-
-
-console.log(string);
+const identidade = { nome, sobrenome, idade };
+const idJson = JSON.stringify(identidade);
+console.log(identidade);
+console.log(idJson);

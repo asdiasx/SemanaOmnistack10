@@ -12,26 +12,35 @@ module.exports = {
     const { github_username, techs, latitude, longitude } = request.body;
     let dev = await Dev.findOne({ github_username });
     if (!dev) {
-      const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
-      const { name = login, avatar_url, bio } = apiResponse.data;
-      const techsArray = parseStringAsArray(techs);
-      const location = {
-        type: 'Point',
-        coordinates: [longitude, latitude],
-      };
-      dev = await Dev.create({
-        github_username,
-        name,
-        bio,
-        avatar_url,
-        techs: techsArray,
-        location,
-      });
-      return response.json(dev);
+      try {
+        const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
+
+        const { name = login, avatar_url, bio } = apiResponse.data;
+
+        const techsArray = parseStringAsArray(techs);
+
+        const location = {
+          type: 'Point',
+          coordinates: [longitude, latitude],
+        };
+
+        dev = await Dev.create({
+          github_username,
+          name,
+          bio,
+          avatar_url,
+          techs: techsArray,
+          location,
+        });
+
+        return response.json(dev);
+
+      } catch (err) {
+        return response.json({ "error": "1", "msg": "Usuário não encontrado no Github" });
+      }
+
     }
-    else {
-      return response.json('Dev já existe no database');
-    };
+    return response.json({ "error": "2", "msg": "Usuário já cadastrado como Dev" });
   },
 
   async update(request, response) {
