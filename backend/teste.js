@@ -1,3 +1,4 @@
+// used to test some functions during learning process... 
 express = require('express');
 var nome = "Adriano";
 var sobrenome = "Dias";
