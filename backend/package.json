@@ -7,17 +7,17 @@
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
-    "acorn": "^7.1.1",
-    "axios": "^0.19.1",
+    "acorn": "^8.1.0",
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
-    "elint": "^1.11.1",
+    "elint": "^2.0.1",
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "minimist": "^1.2.5",
     "mongoose": "^5.8.9"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.23.0",
     "nodemon": "^2.0.2"
   }
 }
